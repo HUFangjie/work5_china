@@ -1,0 +1,18 @@
+seed: 7
+train_id: tg-001
+anchor:
+  revocation_ttl_sec: 120
+network_profiles:
+  clean:
+    base_ms: 8
+    jitter_ms: 1
+    loss: 0.0
+  urban:
+    base_ms: 25
+    jitter_ms: 8
+    loss: 0.01
+  harsh:
+    base_ms: 60
+    jitter_ms: 20
+    loss: 0.03
+default_experiment_rounds: 100

@@ -1,0 +1,6 @@
+name: baseline_full_reauth
+rtt: 3
+challenge_cost_ms: 2.0
+verify_cost_ms: 1.5
+revocation_lookup_ms: 0.7
+msg_bytes: 1400

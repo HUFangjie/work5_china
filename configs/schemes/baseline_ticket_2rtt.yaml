@@ -1,0 +1,6 @@
+name: baseline_ticket_2rtt
+rtt: 2
+challenge_cost_ms: 1.8
+verify_cost_ms: 1.0
+revocation_lookup_ms: 0.5
+msg_bytes: 760
