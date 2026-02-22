@@ -22,8 +22,12 @@ pip install -e . --no-build-isolation
 说明你当前服务器上的 `pip/setuptools` 对 `pyproject.toml` 的 editable 支持有兼容性问题。可用以下任一方式：
 
 ```bash
-# 方案A：直接普通安装（推荐）
-pip install . --no-build-isolation
+# 先确认 pip 与 python 是同一个解释器（非常关键）
+which python
+python -m pip -V
+
+# 方案A：用当前 python 对应的 pip 安装（推荐）
+python -m pip install . --no-build-isolation
 
 # 方案B：不安装，直接用源码路径运行
 PYTHONPATH=src python -m qticket.cli run-exp --exp exp_handover_latency --scheme ours_qticket
@@ -32,8 +36,16 @@ PYTHONPATH=src python -m qticket.cli run-exp --exp exp_handover_latency --scheme
 如果你希望继续 editable 安装：
 
 ```bash
-pip install -U pip setuptools wheel
-pip install -e . --no-build-isolation
+python -m pip install -U pip setuptools wheel
+python -m pip install -e . --no-build-isolation
+```
+
+如果安装日志出现 `Successfully installed UNKNOWN-0.0.0`，说明安装到了错误元数据包，未正确安装本项目。请执行：
+
+```bash
+python -m pip uninstall -y UNKNOWN
+python -m pip install . --no-build-isolation
+python -c "import qticket; print(qticket.__file__)"
 ```
 
 ## 2. 启动节点（可选）

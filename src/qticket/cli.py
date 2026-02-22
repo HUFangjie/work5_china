@@ -8,6 +8,14 @@ from pathlib import Path
 from qticket.eval.runner import run_experiment
 
 
+def _find_repo_root() -> Path:
+    candidates = [Path.cwd(), *Path.cwd().parents, Path(__file__).resolve().parent, *Path(__file__).resolve().parents]
+    for c in candidates:
+        if (c / 'configs' / 'default.yaml').exists():
+            return c
+    return Path.cwd()
+
+
 class Handler(BaseHTTPRequestHandler):
     role = 'node'
 
@@ -50,7 +58,7 @@ def main() -> None:
     schemes = args.schemes or ([] if not args.scheme else [args.scheme])
     if not schemes:
         raise SystemExit('must provide --scheme or --schemes')
-    repo_root = Path(__file__).resolve().parents[2]
+    repo_root = _find_repo_root()
     out = run_experiment(args.exp, schemes, repo_root)
     for s, p in out.items():
         print(f'[{s}] outputs at {p}')
