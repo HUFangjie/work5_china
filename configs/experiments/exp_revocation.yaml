@@ -1,4 +1,4 @@
 name: exp_revocation
 rounds: 150
 revoke_at_ratio: 0.4
-profiles: [clean, harsh]
+profiles: ["clean", "harsh"]
