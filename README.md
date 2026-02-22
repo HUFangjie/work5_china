@@ -11,6 +11,31 @@ pip install -e . --no-build-isolation
 
 > 如你的环境可联网，也可以直接 `pip install -e .`。
 
+
+## 1.1 安装报错排查（你遇到的这个）
+
+如果你看到类似：
+
+- `editable mode currently requires a setuptools-based build`
+- `setup.py or setup.cfg not found`
+
+说明你当前服务器上的 `pip/setuptools` 对 `pyproject.toml` 的 editable 支持有兼容性问题。可用以下任一方式：
+
+```bash
+# 方案A：直接普通安装（推荐）
+pip install . --no-build-isolation
+
+# 方案B：不安装，直接用源码路径运行
+PYTHONPATH=src python -m qticket.cli run-exp --exp exp_handover_latency --scheme ours_qticket
+```
+
+如果你希望继续 editable 安装：
+
+```bash
+pip install -U pip setuptools wheel
+pip install -e . --no-build-isolation
+```
+
 ## 2. 启动节点（可选）
 
 ### 2.1 Docker Compose
