@@ -5,3 +5,5 @@ verify_cost_ms: 2.0
 revocation_lookup_ms: 0.9
 msg_bytes: 2100
 vpn_rebuild_ms: 30
+
+revocation_propagation_ms: 20
