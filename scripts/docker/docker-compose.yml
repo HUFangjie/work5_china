@@ -1,0 +1,25 @@
+services:
+  anchor:
+    build:
+      context: ../..
+      dockerfile: scripts/docker/Dockerfile
+    command: python -m qticket.cli run-node --role anchor --port 8001
+    ports: ["8001:8001"]
+  ag1:
+    build:
+      context: ../..
+      dockerfile: scripts/docker/Dockerfile
+    command: python -m qticket.cli run-node --role ag --id ag1 --port 8002
+    ports: ["8002:8002"]
+  ag2:
+    build:
+      context: ../..
+      dockerfile: scripts/docker/Dockerfile
+    command: python -m qticket.cli run-node --role ag --id ag2 --port 8003
+    ports: ["8003:8003"]
+  tg:
+    build:
+      context: ../..
+      dockerfile: scripts/docker/Dockerfile
+    command: python -m qticket.cli run-node --role tg --port 8004
+    ports: ["8004:8004"]

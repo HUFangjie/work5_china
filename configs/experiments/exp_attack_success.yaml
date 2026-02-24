@@ -1,0 +1,4 @@
+name: exp_attack_success
+rounds: 180
+attack_types: ["impersonation", "replay", "wrong_binding"]
+profiles: ["clean", "urban"]

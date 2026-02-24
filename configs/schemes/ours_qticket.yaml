@@ -1,0 +1,8 @@
+name: ours_qticket
+rtt: 1
+challenge_cost_ms: 1.2
+verify_cost_ms: 0.8
+revocation_lookup_ms: 0.5
+msg_bytes: 680
+
+revocation_propagation_ms: 20
