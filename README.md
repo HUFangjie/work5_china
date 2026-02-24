@@ -92,6 +92,7 @@ python -m qticket.cli run-exp --exp exp_handover_latency --schemes \
 python -m qticket.cli run-exp --exp exp_attack_success --schemes ours_qticket baseline_token_only
 python -m qticket.cli run-exp --exp exp_revocation --schemes ours_qticket baseline_full_reauth
 python -m qticket.cli run-exp --exp exp_microbench --schemes ours_qticket baseline_qkd_vpn
+python -m qticket.cli run-exp --exp exp_scalability --schemes ours_qticket baseline_full_reauth baseline_qkd_vpn
 ```
 
 ## 4. 如何查看输出数据

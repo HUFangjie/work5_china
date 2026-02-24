@@ -9,12 +9,14 @@ from qticket.experiments.attack_success.run import run_attack_success
 from qticket.experiments.handover_latency.run import run_handover_latency
 from qticket.experiments.microbench.run import run_microbench
 from qticket.experiments.revocation.run import run_revocation
+from qticket.experiments.scalability.run import run_scalability
 
 EXPERIMENTS = {
     "exp_handover_latency": run_handover_latency,
     "exp_attack_success": run_attack_success,
     "exp_revocation": run_revocation,
     "exp_microbench": run_microbench,
+    "exp_scalability": run_scalability,
 }
 
 

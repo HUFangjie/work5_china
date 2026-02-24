@@ -29,3 +29,30 @@ def write_overhead_table(rows, table_dir: Path) -> None:
         w.writeheader()
         if out_rows:
             w.writerows(out_rows)
+
+
+def write_scalability_capacity_table(summary_rows, table_dir: Path) -> None:
+    table_dir.mkdir(parents=True, exist_ok=True)
+    # max throughput under CPU<80 constraint
+    best = {}
+    for r in summary_rows:
+        if float(r.get('ag_cpu_pct', 0)) >= 80.0 or float(r.get('anchor_cpu_pct', 0)) >= 80.0:
+            continue
+        s = r['scheme']
+        tp = float(r.get('throughput_rps', 0.0))
+        if s not in best or tp > best[s]['max_rebind_per_s_under_cpu80']:
+            best[s] = {
+                'scheme': s,
+                'max_rebind_per_s_under_cpu80': tp,
+                'num_trains': int(r.get('num_trains', 0)),
+                'handover_rate': float(r.get('handover_rate', 0.0)),
+                'profile': r.get('profile', ''),
+            }
+    import csv
+    out = list(best.values())
+    with (table_dir / 'table_cpu80_capacity.csv').open('w', encoding='utf-8', newline='') as f:
+        fields = ['scheme', 'max_rebind_per_s_under_cpu80', 'num_trains', 'handover_rate', 'profile']
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        for row in out:
+            w.writerow(row)

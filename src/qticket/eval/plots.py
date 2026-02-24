@@ -46,3 +46,9 @@ def plot_revocation(rows, fig_dir: Path) -> None:
 
 def plot_microbench(rows, fig_dir: Path) -> None:
     _save_stub(fig_dir, 'fig1_microbench_stack', 'microbench path decomposition')
+
+
+def plot_scalability(rows, fig_dir: Path) -> None:
+    _save_stub(fig_dir, 'fig1_concurrency_vs_p95', 'concurrency vs p95 latency')
+    _save_stub(fig_dir, 'fig2_throughput_vs_concurrency', 'throughput vs concurrency')
+    _save_stub(fig_dir, 'fig3_cpu_vs_concurrency', 'cpu vs concurrency')
